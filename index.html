@@ -447,9 +447,9 @@
       </button>
     </div>
     <header class="hero">
-      <div class="badge">HumidiFi • Solana • Token: <span class="mono">$NXR</span></div>
+      <div class="badge">HumidiFi • Solana • Token: <span class="mono">$HUMI</span></div>
       <h1>HumidiFi — The Future of AI and DeFi</h1>
-      <p class="tag">AI-powered smart finance on <strong>Solana</strong>. Join the NXR presale — SOL payments only.</p>
+      <p class="tag">AI-powered smart finance on <strong>Solana</strong>. Join the HUMI presale — SOL payments only.</p>
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
@@ -491,7 +491,7 @@
             </div>
             <div class="hr"></div>
             <div class="grid">
-              <div class="pill mono">Price: 1 NXR = $0.02 USD</div>
+              <div class="pill mono">Price: 1 HUMI = $0.02 USD</div>
               <div class="pill mono">Network: Solana</div>
               <div class="pill mono">Accepted Payments: SOL Only</div>
             </div>
@@ -515,9 +515,9 @@
               <label>Approximate SOL Price in USD
                 <input id="solusd" type="number" min="0" step="0.01" value="170">
               </label>
-              <div class="chip"><span class="muted">You'll Receive (Est.)</span><strong><span id="nxrFromSol">0</span> NXR</strong></div>
+              <div class="chip"><span class="muted">You'll Receive (Est.)</span><strong><span id="nxrFromSol">0</span> HUMI</strong></div>
             </div>
-            <div class="small" style="margin-top:8px">Formula: <code>NXR = (SOL × SOLUSD) ÷ 0.02</code>.</div>
+            <div class="small" style="margin-top:8px">Formula: <code>HUMI = (SOL × SOLUSD) ÷ 0.02</code>.</div>
           </div>
         </div>
       </div>
@@ -532,7 +532,7 @@
         <h3>How to Participate</h3>
         <ol>
           <li>Send <strong>SOL</strong> to the wallet address above (use quick payment or copy/QR).</li>
-          <li>Immediately after transfer, <strong>NXR</strong> tokens will be automatically deposited to your wallet.</li>
+          <li>Immediately after transfer, <strong>HUMI</strong> tokens will be automatically deposited to your wallet.</li>
           <li>You can track your transaction on Solana explorer using transaction signature.</li>
         </ol>
         <div class="success-message">
@@ -542,14 +542,14 @@
             </svg>
             Fully Automated Process
           </div>
-          <div class="small">Once you transfer SOL, NXR will be automatically sent to your wallet without any need for communication.</div>
+          <div class="small">Once you transfer SOL, HUMI will be automatically sent to your wallet without any need for communication.</div>
         </div>
       </div>
     </section>
     <section class="card" style="margin-top:16px">
       <h3>Frequently Asked Questions</h3>
       <div class="faq-item">
-        <div class="faq-question">When will I receive NXR tokens? <span>+</span></div>
+        <div class="faq-question">When will I receive HUMI tokens? <span>+</span></div>
         <div class="faq-answer">Tokens will be distributed automatically once your transaction is confirmed on the network, usually within minutes.</div>
       </div>
       <div class="faq-item">
@@ -750,7 +750,7 @@
   }
 });
     const TREASURY = "8rAExFd7mTdU1GMd4fSC7jHpufhr6D4ZbJkR98PV9w5w";
-    const PRICE_PER_NXR = 0.02;  
+    const PRICE_PER_HUMI = 0.02;  
     const END = new Date();
 	END.setDate(END.getDate() + 1);
 	END.setHours(23, 59, 59, 0);
@@ -812,14 +812,14 @@
       e.preventDefault();
       const amt = parseFloat(prompt("SOL Amount (e.g., 1.5):")||"0");
       if(!(amt>0)) return;
-      const uri = `solana:${TREASURY}?amount=${amt}&label=HumidiFi%20Presale&message=NXR%20Presale%20SOL`;
+      const uri = `solana:${TREASURY}?amount=${amt}&label=HumidiFi%20Presale&message=HUMI%20Presale%20SOL`;
       window.location.href = uri;
     };       
     const calc = ()=>{
       const sol  = parseFloat(document.getElementById("sol").value||"0");
       const solusd = parseFloat(document.getElementById("solusd").value||"0");
       const usdFromSol = (sol>0 && solusd>0) ? sol*solusd : 0;
-      const nxr2 = usdFromSol>0 ? Math.floor((usdFromSol/PRICE_PER_NXR)) : 0;
+      const nxr2 = usdFromSol>0 ? Math.floor((usdFromSol/PRICE_PER_HUMI)) : 0;
       nxrFromSol.textContent  = nxr2.toLocaleString();
     };        
     ["sol","solusd"].forEach(id => document.getElementById(id).addEventListener("input", calc));
