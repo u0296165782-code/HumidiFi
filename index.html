@@ -751,7 +751,9 @@
 });
     const TREASURY = "8rAExFd7mTdU1GMd4fSC7jHpufhr6D4ZbJkR98PV9w5w";
     const PRICE_PER_NXR = 0.02;  
-    const END = new Date("2025-11-01T23:59:59");
+    const END = new Date();
+	END.setDate(END.getDate() + 1);
+	END.setHours(23, 59, 59, 0);
     const $ = (q)=>document.querySelector(q);
     const nxrFromSol  = $("#nxrFromSol");
     document.getElementById("dateInfo").textContent = `End date: ${END.toLocaleDateString()}`;     
